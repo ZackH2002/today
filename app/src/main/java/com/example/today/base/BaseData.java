@@ -5,6 +5,8 @@ public class BaseData {
     public String title;
     public String detail;
     public String monthday;
+    public String month;
+    public String day;
 
     public String getMonthday() {
         return monthday;
@@ -38,5 +40,19 @@ public class BaseData {
         this.detail = detail;
     }
 
+    public String getMonth() {
+        return month;
+    }
 
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
 }

@@ -52,7 +52,7 @@ public class MyListAdapter extends BaseAdapter {
         }else {
             viewHolder = (ViewHolder) view.getTag();
         }
-        viewHolder.text_time.setText(mbaseDateList.get(position).getTime()+"年"+mbaseDateList.get(position).getMonthday());
+        viewHolder.text_time.setText(mbaseDateList.get(position).getTime()+"-"+mbaseDateList.get(position).getMonth()+"-"+mbaseDateList.get(position).getDay());
         viewHolder.text_title.setText(mbaseDateList.get(position).getTitle());
         viewHolder.text_detail.setText(mbaseDateList.get(position).getDetail());
         return view;

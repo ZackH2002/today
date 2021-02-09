@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/gray"
     android:orientation="vertical">
 
     <LinearLayout
@@ -39,6 +40,7 @@
             android:layout_marginStart="2dp"
             android:layout_marginTop="8dp"
             android:layout_weight="15"
+            android:textColor="@color/black"
             android:text="2021-1-28"
             android:textStyle="bold" />
 
@@ -80,7 +82,7 @@
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="10dp"
             android:layout_weight="20"
-            android:elevation="5dp">
+            app:cardCornerRadius="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -93,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:text="中国东晋的第十位皇帝司马德宗逝世"
-                    android:textColor="@color/black"
+                    android:textColor="@color/blue"
                     android:textStyle="italic" />
 
                 <TextView

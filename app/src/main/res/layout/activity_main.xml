@@ -16,16 +16,5 @@
         android:layout_height="match_parent"
         android:divider="@null" />
 
-    <ImageButton
-        android:id="@+id/calendar_button"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:src="@drawable/calender2"
-        android:layout_margin="20dp"
-        android:background="@drawable/calendarbg">
-
-    </ImageButton>
 
 </RelativeLayout>

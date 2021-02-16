@@ -49,26 +49,29 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/main_header_text_constellation"
-                android:layout_width="wrap_content"
+                android:id="@+id/main_header_text_consname"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:text="金牛座"
+                android:text="双鱼座"
                 android:textColor="@color/black"
                 android:textSize="26sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:text="速配星座"
-                android:textSize="26sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/main_header_text_QFirend"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:text="双鱼座"

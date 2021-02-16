@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,15 +35,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private ImageButton CalenderButton;
-    TextView responseText;
     private LinkedList<BaseData> mList = null;
     private ListView listView;
-    private Context mContext;
-    private MyListAdapter adapter = null;
-
-    private Calendar calendar;
-    private Date date;
     private Handler handler = new Handler();
     public String responsedata1 = null;
     ConsDate consDate = new ConsDate();
@@ -53,48 +47,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        CalenderButton = (ImageButton) findViewById(R.id.calendar_button);
         listView = (ListView) findViewById(R.id.main_lv);
         new ListViewAsyncTask().execute();
-        mContext = MainActivity.this;
-        //获取日历对象
-        calendar = Calendar.getInstance();
-        date = new Date();
-        calendar.setTime(date);
-        int month = calendar.get(Calendar.MONTH) + 1;
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
         addHeaderView();
-//        jiexi(responsedata1);
     }
 
-    //    public String request(String url_date) {
-//        try {
-//            String responsedata = null;
-//            URL url = new URL(url_date);
-//            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-//            connection.setRequestMethod("GET");
-//            connection.setConnectTimeout(8000);
-//            connection.setReadTimeout(8000);
-//            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-//                InputStream in = connection.getInputStream();
-//                byte[] b = new byte[1024 * 512];
-//                int len;
-//                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//                while ((len = in.read(b)) > -1) {
-//                    baos.write(b, 0, len);
-//                }
-//                responsedata = baos.toString();
-//                Log.e("TAG", responsedata);
-//
-//            } else {
-//                Toast.makeText(getApplicationContext(), "连接网络错误", Toast.LENGTH_SHORT).show();
-//            }
-//            return responsedata;
-//        } catch (java.io.IOException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
+
     public class ListViewAsyncTask extends AsyncTask<Void, Void, String> {
         //自定义AsyncTask类，三个参数，第一个不定量入参，第二个：进度 第三个：结果
         protected void onPreExecute() {
@@ -140,9 +98,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String responsedata) {
             super.onPostExecute(responsedata);
             //Loading结束，处理数据
-            //RequstData是用于存储对象信息的自定义类
             RequstData requstdata = new RequstData();
-            //由于数据中有Json数据 所以需要一个ArrayList来存储
             List<BaseData> baseDatas = new ArrayList<>();
             try {
                 JSONObject obj = new JSONObject(responsedata);
@@ -199,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
         TopTv = headerView.findViewById(R.id.main_header_top);
         DayTv = headerView.findViewById(R.id.main_header_day);
         WeekTv = headerView.findViewById(R.id.main_header_week);
-        ConsTv = headerView.findViewById(R.id.main_header_text_constellation);
+        ConsTv = headerView.findViewById(R.id.main_header_text_consname);
         QFriendTv = headerView.findViewById(R.id.main_header_text_QFirend);
         ColorTv = headerView.findViewById(R.id.main_header_text_color);
         HealthTv = headerView.findViewById(R.id.main_header_text_health);
@@ -207,7 +163,6 @@ public class MainActivity extends AppCompatActivity {
         WorkTv = headerView.findViewById(R.id.main_header_text_work);
         MoneyTv = headerView.findViewById(R.id.main_header_text_money);
         SummaryTv = headerView.findViewById(R.id.main_header_summary);
-        NameTv=headerView.findViewById(R.id.main_header_text_constellation);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -270,7 +225,6 @@ public class MainActivity extends AppCompatActivity {
                             SummaryTv.setText(consDate.getSummary());
                             WorkTv.setText(consDate.getWork());
                             DayTv.setText(consDate.getDate());
-                            NameTv.setText(consDate.getName());
                         }
                     };
                     handler.post(runnable);
@@ -281,28 +235,6 @@ public class MainActivity extends AppCompatActivity {
         }).start();
     }
 }
-//    public void show(){
-//        new Thread(){
-//            @Override
-//            public void run(){
-//                try {
-//
-//                }
-//            }
-//
-//
-//        }
-//
-//    }
-//}
-//    private void showResponse(final String response){
-//        runOnUiThread(new Runnable() {
-//            @Override
-//            public void run() {
-//                QFriendTv.setText(consDate.getQFriend());
-//                ColorTv.setText(consDate.getColor());
-//            }
-//        });
 
 
 

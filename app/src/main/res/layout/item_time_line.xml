@@ -22,17 +22,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="4dp"
                 android:src="@drawable/timeline" />
 
             <View
                 android:layout_width="2dp"
-                android:layout_height="10dp"
+                android:layout_height="7dp"
                 android:layout_gravity="center_horizontal"
                 android:background="#bfbfbf" />
 
         </LinearLayout>
-
         <TextView
             android:id="@+id/item_time"
             android:layout_width="0dp"

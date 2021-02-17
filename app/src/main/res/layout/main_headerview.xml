@@ -108,7 +108,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="3dp"
-            android:background="@color/white" />
+            android:background="@color/blue1" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -209,7 +209,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="3dp"
-            android:background="@color/white" />
+            android:background="@color/blue1" />
 
         <TextView
             android:id="@+id/main_header_summary"

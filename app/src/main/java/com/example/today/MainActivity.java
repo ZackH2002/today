@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         new ListViewAsyncTask().execute();
         addHeaderView();
         historyLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            //添加点击事件
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String DescTime =((TextView)view.findViewById(R.id.item_time)).getText().toString();

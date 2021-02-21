@@ -1,12 +1,14 @@
 package com.example.today;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -36,20 +38,33 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private LinkedList<BaseData> mList = null;
-    private ListView listView;
+    private ListView historyLv;
     private Handler handler = new Handler();
     public String responsedata1 = null;
     ConsDate consDate = new ConsDate();
     //声明头布局中的TextView Cons-星座
-    TextView TopTv, DayTv, WeekTv, ConsTv, QFriendTv, ColorTv, HealthTv, LoveTv, WorkTv, MoneyTv, SummaryTv,NameTv;
+    TextView TopTv, DayTv, WeekTv, ConsTv, QFriendTv, ColorTv, HealthTv, LoveTv, WorkTv, MoneyTv, SummaryTv, NameTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        listView = (ListView) findViewById(R.id.main_lv);
+        historyLv = (ListView) findViewById(R.id.main_lv);
         new ListViewAsyncTask().execute();
         addHeaderView();
+        historyLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String DescTime =((TextView)view.findViewById(R.id.item_time)).getText().toString();
+                String DescTitle=((TextView)view.findViewById(R.id.item_title)).getText().toString();
+                String DescDetail=((TextView)view.findViewById(R.id.item_detail)).getText().toString();
+                Intent intent = new Intent(MainActivity.this,DescActivity.class);
+                intent.putExtra("time",DescTime);
+                intent.putExtra("title",DescTitle);
+                intent.putExtra("detail",DescDetail);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -110,10 +125,10 @@ public class MainActivity extends AppCompatActivity {
                     String time = TempObj.getString("year");
                     baseData.setTime(time);
                     String monthday = TempObj.getString("monthday");
-                    String month=null;
-                    month=monthday.substring(0,2);
-                    String day=null;
-                    day =monthday.substring(2);
+                    String month = null;
+                    month = monthday.substring(0, 2);
+                    String day = null;
+                    day = monthday.substring(2);
                     baseData.setMonth(month);
                     baseData.setDay(day);
                     baseData.setMonthday(monthday);
@@ -124,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
                     baseDatas.add(baseData);
                 }
                 //绑定数据
-                listView.setAdapter(new MyListAdapter(MainActivity.this, baseDatas));
+                historyLv.setAdapter(new MyListAdapter(MainActivity.this, baseDatas));
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -144,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
         //添加头布局和尾部局
 
         View headerView = LayoutInflater.from(this).inflate(R.layout.main_headerview, null);
-        listView.addHeaderView(headerView);
+        historyLv.addHeaderView(headerView);
         initHeaderView(headerView);
 
     }
@@ -194,10 +209,10 @@ public class MainActivity extends AppCompatActivity {
                             String love = jsonObject.getString("love");
                             String money = jsonObject.getString("money");
                             String summary = jsonObject.getString("summary");
-                            String work=jsonObject.getString("work");
+                            String work = jsonObject.getString("work");
                             String date = jsonObject.getString("date");
-                            String name=jsonObject.getString("name");
-                            date=date.substring(6);
+                            String name = jsonObject.getString("name");
+                            date = date.substring(6);
                             consDate.setDate(date);
                             consDate.setName(name);
                             consDate.setQFriend(QFriend);
